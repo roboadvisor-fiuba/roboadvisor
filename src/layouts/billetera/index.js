@@ -30,12 +30,10 @@ import Footer from "examples/Footer";
 import DataTable from "examples/Tables/DataTable";
 
 // Data
-import authorsTableData from "layouts/tables/data/authorsTableData";
-import projectsTableData from "layouts/tables/data/projectsTableData";
+import billeteraTable from "layouts/billetera/data/billeteraTable";
 
-function Tables() {
-  const { columns, rows } = authorsTableData();
-  const { columns: pColumns, rows: pRows } = projectsTableData();
+function Billetera() {
+  const { columns, rows } = billeteraTable();
 
   return (
     <DashboardLayout>
@@ -55,7 +53,7 @@ function Tables() {
                 coloredShadow="info"
               >
                 <MDTypography variant="h6" color="white">
-                  Acciones
+                  Billetera
                 </MDTypography>
               </MDBox>
               <MDBox pt={3}>
@@ -69,50 +67,6 @@ function Tables() {
               </MDBox>
             </Card>
           </Grid>
-          {/* <Grid item xs={12}>
-            <Card>
-              <MDBox
-                mx={2}
-                mt={-3}
-                py={3}
-                px={2}
-                variant="gradient"
-                bgColor="info"
-                borderRadius="lg"
-                coloredShadow="info"
-              >
-                <MDTypography variant="h6" color="white">
-                  Cartera Sugerida por Robo Advisor
-                </MDTypography>
-              </MDBox>
-              <MDBox pt={3}>
-                <MDBox
-                  display="flex"
-                  alignItems="center"
-                  mt={{ xs: 2, sm: 0 }}
-                  ml={{ xs: -1.5, sm: 0 }}
-                >
-                  <MDBox mr={1}>
-                    <MDButton variant="text" color="error">
-                      <Icon>delete</Icon>&nbsp;vender
-                    </MDButton>
-                  </MDBox>
-                  <MDBox mr={1}>
-                    <MDButton variant="text" color="success">
-                      <Icon>delete</Icon>&nbsp;comprar
-                    </MDButton>
-                  </MDBox>
-                </MDBox>
-                <DataTable
-                  table={{ columns, rows }}
-                  isSorted={false}
-                  entriesPerPage={false}
-                  showTotalEntries={false}
-                  noEndBorder
-                />
-              </MDBox>
-            </Card>
-          </Grid> */}
         </Grid>
       </MDBox>
       <Footer />
@@ -120,4 +74,4 @@ function Tables() {
   );
 }
 
-export default Tables;
+export default Billetera;

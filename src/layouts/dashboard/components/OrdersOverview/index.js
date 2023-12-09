@@ -38,7 +38,7 @@ function OrdersOverview() {
             </MDTypography>
             &nbsp;
             <MDTypography variant="button" color="text" fontWeight="medium">
-              $2500
+              $2400
             </MDTypography>{" "}
             este mes
           </MDTypography>
@@ -48,7 +48,7 @@ function OrdersOverview() {
         <TimelineItem
           color="success"
           icon="notifications"
-          title="+$2400 Edenor"
+          title="+$2400 Cartera Robo Advisor"
           dateTime="22 DEC 7:20 PM"
         />
         <TimelineItem
@@ -66,7 +66,7 @@ function OrdersOverview() {
         <TimelineItem
           color="success"
           icon="notifications"
-          title="+$1800 Loma Negra"
+          title="+$1800 Cartera Robo Advisor"
           dateTime="20 DEC 2:20 AM"
         />
         <TimelineItem

@@ -38,7 +38,9 @@ Coded by www.creative-tim.com
 // Material Dashboard 2 React layouts
 import Dashboard from "layouts/dashboard";
 import Tables from "layouts/tables";
+import Billetera from "layouts/billetera";
 import Billing from "layouts/billing";
+import RoboAdv from "layouts/roboadv";
 import RTL from "layouts/rtl";
 import Notifications from "layouts/notifications";
 import Profile from "layouts/profile";
@@ -56,6 +58,22 @@ const routes = [
     icon: <Icon fontSize="small">dashboard</Icon>,
     route: "/dashboard",
     component: <Dashboard />,
+  },
+  {
+    type: "collapse",
+    name: "Mi Billetera",
+    key: "billetera",
+    icon: <Icon fontSize="small">table_view</Icon>,
+    route: "/billetera",
+    component: <Billetera />,
+  },
+  {
+    type: "collapse",
+    name: "Cartera Robo Advisor",
+    key: "roboadvisor",
+    icon: <Icon fontSize="small">table_view</Icon>,
+    route: "/roboadvisor",
+    component: <RoboAdv />,
   },
   {
     type: "collapse",

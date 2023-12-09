@@ -49,7 +49,7 @@ function Dashboard() {
                 color="dark"
                 icon="weekend"
                 title="Total Activos"
-                count={15}
+                count={2}
                 percentage={{
                   color: "success",
                   amount: "+15%",
@@ -78,7 +78,7 @@ function Dashboard() {
                 color="success"
                 icon="store"
                 title="Balance Total"
-                count="$34k"
+                count="$17k"
                 percentage={{
                   color: "success",
                   amount: "+4%",
@@ -136,7 +136,11 @@ function Dashboard() {
                 <ReportsLineChart
                   color="dark"
                   title="Balance histórico"
-                  description=""
+                  description={
+                    <>
+                      (<strong>+2.5%</strong>) en el último mes
+                    </>
+                  }
                   date="recién actualizado"
                   chart={tasks}
                 />
@@ -146,9 +150,9 @@ function Dashboard() {
         </MDBox>
         <MDBox>
           <Grid container spacing={3}>
-            <Grid item xs={12} md={6} lg={8}>
+            {/* <Grid item xs={12} md={6} lg={8}>
               <Projects />
-            </Grid>
+            </Grid> */}
             <Grid item xs={12} md={6} lg={4}>
               <OrdersOverview />
             </Grid>
