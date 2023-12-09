@@ -1,6 +1,7 @@
 # Robo Advisor
 
 Repositorio frontend del Robo Advisor creado para el Trabajo Practico Profesional.
+Se puede ingresar a la última versión en https://roboadvisor-myacobucci.vercel.app/
 
 ## Comando para ejecutar la página
 
