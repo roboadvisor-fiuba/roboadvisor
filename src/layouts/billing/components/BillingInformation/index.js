@@ -39,7 +39,7 @@ function BillingInformation() {
             email="oliver@burrito.com"
             vat="FRB1235476"
           />
-          <Bill
+          {/* <Bill
             name="lucas harper"
             company="stone tech zone"
             email="lucas@stone-tech.com"
@@ -51,7 +51,7 @@ function BillingInformation() {
             email="ethan@fiber.com"
             vat="FRB1235476"
             noGutter
-          />
+          /> */}
         </MDBox>
       </MDBox>
     </Card>
