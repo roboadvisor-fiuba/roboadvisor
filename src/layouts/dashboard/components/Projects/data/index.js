@@ -33,6 +33,12 @@ import team1 from "assets/images/team-1.jpg";
 import team2 from "assets/images/team-2.jpg";
 import team3 from "assets/images/team-3.jpg";
 import team4 from "assets/images/team-4.jpg";
+import bbva from "assets/images//activos/bbva.jpg";
+import edn from "assets/images//activos/edn.jpg";
+import ypf from "assets/images//activos/YPFD.jpg";
+import teco from "assets/images//activos/TECO2.jpg";
+import loma from "assets/images//activos/LOMA.jpg";
+import pamp from "assets/images//activos/PAMP.jpg";
 
 export default function data() {
   const avatars = (members) =>
@@ -79,7 +85,7 @@ export default function data() {
 
     rows: [
       {
-        companies: <Company image={logoXD} name="BBVA" />,
+        companies: <Company image={bbva} name="BBVA" />,
         members: (
           <MDBox display="flex" py={1}>
             {avatars([
@@ -102,7 +108,7 @@ export default function data() {
         ),
       },
       {
-        companies: <Company image={logoAtlassian} name="Edenor" />,
+        companies: <Company image={edn} name="Edenor" />,
         members: (
           <MDBox display="flex" py={1}>
             {avatars([
@@ -123,7 +129,7 @@ export default function data() {
         ),
       },
       {
-        companies: <Company image={logoSlack} name="Pampa Energia" />,
+        companies: <Company image={pamp} name="Pampa Energia" />,
         members: (
           <MDBox display="flex" py={1}>
             {avatars([
@@ -144,7 +150,7 @@ export default function data() {
         ),
       },
       {
-        companies: <Company image={logoSpotify} name="Loma Negra" />,
+        companies: <Company image={loma} name="Loma Negra" />,
         members: (
           <MDBox display="flex" py={1}>
             {avatars([
@@ -167,7 +173,7 @@ export default function data() {
         ),
       },
       {
-        companies: <Company image={logoJira} name="YPF" />,
+        companies: <Company image={ypf} name="YPF" />,
         members: (
           <MDBox display="flex" py={1}>
             {avatars([[team4, "Jessica Doe"]])}
@@ -185,7 +191,7 @@ export default function data() {
         ),
       },
       {
-        companies: <Company image={logoInvesion} name="Telecom" />,
+        companies: <Company image={teco} name="Telecom" />,
         members: (
           <MDBox display="flex" py={1}>
             {avatars([

@@ -16,10 +16,12 @@ Coded by www.creative-tim.com
 // @mui material components
 import Grid from "@mui/material/Grid";
 import Card from "@mui/material/Card";
+import Icon from "@mui/material/Icon";
 
 // Material Dashboard 2 React components
 import MDBox from "components/MDBox";
 import MDTypography from "components/MDTypography";
+import MDButton from "components/MDButton";
 
 // Material Dashboard 2 React example components
 import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
@@ -80,12 +82,29 @@ function Tables() {
                 coloredShadow="info"
               >
                 <MDTypography variant="h6" color="white">
-                  Projects Table
+                  Cartera Sugerida por Robo Advisor
                 </MDTypography>
               </MDBox>
               <MDBox pt={3}>
+                <MDBox
+                  display="flex"
+                  alignItems="center"
+                  mt={{ xs: 2, sm: 0 }}
+                  ml={{ xs: -1.5, sm: 0 }}
+                >
+                  <MDBox mr={1}>
+                    <MDButton variant="text" color="error">
+                      <Icon>delete</Icon>&nbsp;vender
+                    </MDButton>
+                  </MDBox>
+                  <MDBox mr={1}>
+                    <MDButton variant="text" color="success">
+                      <Icon>delete</Icon>&nbsp;comprar
+                    </MDButton>
+                  </MDBox>
+                </MDBox>
                 <DataTable
-                  table={{ columns: pColumns, rows: pRows }}
+                  table={{ columns, rows }}
                   isSorted={false}
                   entriesPerPage={false}
                   showTotalEntries={false}

@@ -24,9 +24,12 @@ import MDButton from "components/MDButton";
 import Icon from "@mui/material/Icon";
 
 // Images
-import team2 from "assets/images/team-2.jpg";
-import team3 from "assets/images/team-3.jpg";
-import team4 from "assets/images/team-4.jpg";
+import bbva from "assets/images//activos/bbva.jpg";
+import edn from "assets/images//activos/edn.jpg";
+import ypf from "assets/images//activos/YPFD.jpg";
+import ggal from "assets/images//activos/GGAL.jpg";
+import loma from "assets/images//activos/LOMA.jpg";
+import pamp from "assets/images//activos/PAMP.jpg";
 
 export default function data() {
   const Author = ({ image, name, email }) => (
@@ -61,7 +64,7 @@ export default function data() {
 
     rows: [
       {
-        author: <Author image={team2} name="BBAR" email="BBVA" />,
+        author: <Author image={bbva} name="BBAR" email="BBVA" />,
         function: <Job title="Manager" description="Organization" />,
         status: (
           <MDBox ml={-1}>
@@ -89,7 +92,7 @@ export default function data() {
         ),
       },
       {
-        author: <Author image={team3} name="EDN" email="Edenor" />,
+        author: <Author image={edn} name="EDN" email="Edenor" />,
         function: <Job title="Programator" description="Developer" />,
         status: (
           <MDBox ml={-1}>
@@ -117,7 +120,7 @@ export default function data() {
         ),
       },
       {
-        author: <Author image={team4} name="YPFD" email="YPF" />,
+        author: <Author image={ypf} name="YPFD" email="YPF" />,
         function: <Job title="Executive" description="Projects" />,
         status: (
           <MDBox ml={-1}>
@@ -145,7 +148,7 @@ export default function data() {
         ),
       },
       {
-        author: <Author image={team3} name="GGAL" email="Galicia" />,
+        author: <Author image={ggal} name="GGAL" email="Galicia" />,
         function: <Job title="Programator" description="Developer" />,
         status: (
           <MDBox ml={-1}>
@@ -173,7 +176,7 @@ export default function data() {
         ),
       },
       {
-        author: <Author image={team3} name="LOMA" email="Loma Negra" />,
+        author: <Author image={loma} name="LOMA" email="Loma Negra" />,
         function: <Job title="Manager" description="Executive" />,
         status: (
           <MDBox ml={-1}>
@@ -201,7 +204,7 @@ export default function data() {
         ),
       },
       {
-        author: <Author image={team4} name="PAMP" email="Pampa Energía" />,
+        author: <Author image={pamp} name="PAMP" email="Pampa Energía" />,
         function: <Job title="Programator" description="Developer" />,
         status: (
           <MDBox ml={-1}>
