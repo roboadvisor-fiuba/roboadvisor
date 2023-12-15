@@ -24,7 +24,7 @@ import MDButton from "components/MDButton";
 import Icon from "@mui/material/Icon";
 
 // Images
-import roboadv from "assets/images//activos/robot.png";
+import bbva from "assets/images//activos/bbva.jpg";
 import edn from "assets/images//activos/edn.jpg";
 import ypf from "assets/images//activos/YPFD.jpg";
 import ggal from "assets/images//activos/GGAL.jpg";
@@ -58,22 +58,22 @@ export default function data() {
       { Header: "especie", accessor: "author", width: "45%", align: "left" },
       // { Header: "function", accessor: "function", align: "left" },
       // { Header: "status", accessor: "status", align: "center" },
-      { Header: "importe", accessor: "employed", align: "center" },
-      { Header: "accion", accessor: "action", align: "center" },
+      { Header: "ultimo precio", accessor: "employed", align: "center" },
+      //   { Header: "accion", accessor: "action", align: "center" },
     ],
 
     rows: [
       {
-        author: <Author image={ggal} name="GGAL" email="Galicia" />,
-        function: <Job title="Manager" description="Organization" />,
+        author: <Author image={edn} name="EDN" email="Edenor" />,
+        function: <Job title="Programator" description="Developer" />,
         status: (
-          <MDTypography component="a" href="#" variant="caption" color="text" fontWeight="medium">
-            $35000
-          </MDTypography>
+          <MDBox ml={-1}>
+            <MDBadge badgeContent="offline" color="dark" variant="gradient" size="sm" />
+          </MDBox>
         ),
         employed: (
           <MDTypography component="a" href="#" variant="caption" color="text" fontWeight="medium">
-            $15000
+            2500,65
           </MDTypography>
         ),
         action: (
@@ -92,8 +92,36 @@ export default function data() {
         ),
       },
       {
-        author: <Author image={pamp} name="PAMP" email="Pampa Energía" />,
-        function: <Job title="Programator" description="Developer" />,
+        author: <Author image={ypf} name="YPFD" email="YPF" />,
+        function: <Job title="Executive" description="Projects" />,
+        status: (
+          <MDBox ml={-1}>
+            <MDBadge badgeContent="online" color="success" variant="gradient" size="sm" />
+          </MDBox>
+        ),
+        employed: (
+          <MDTypography component="a" href="#" variant="caption" color="text" fontWeight="medium">
+            1986,78
+          </MDTypography>
+        ),
+        action: (
+          <MDBox display="flex" alignItems="center" mt={{ xs: 2, sm: 0 }} ml={{ xs: -1.5, sm: 0 }}>
+            <MDBox mr={1}>
+              <MDButton variant="text" color="error">
+                <Icon>delete</Icon>&nbsp;vender
+              </MDButton>
+            </MDBox>
+            <MDBox mr={1}>
+              <MDButton variant="text" color="success">
+                <Icon>delete</Icon>&nbsp;comprar
+              </MDButton>
+            </MDBox>
+          </MDBox>
+        ),
+      },
+      {
+        author: <Author image={loma} name="LOMA" email="Loma Negra" />,
+        function: <Job title="Manager" description="Executive" />,
         status: (
           <MDBox ml={-1}>
             <MDBadge badgeContent="offline" color="dark" variant="gradient" size="sm" />
@@ -101,7 +129,7 @@ export default function data() {
         ),
         employed: (
           <MDTypography component="a" href="#" variant="caption" color="text" fontWeight="medium">
-            $2000
+            830,0
           </MDTypography>
         ),
         action: (

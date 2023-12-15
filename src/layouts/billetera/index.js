@@ -31,6 +31,44 @@ import DataTable from "examples/Tables/DataTable";
 
 // Data
 import billeteraTable from "layouts/billetera/data/billeteraTable";
+import billeteraTable2 from "layouts/billetera/data/billeteraTable2";
+
+function Abc() {
+  const { columns, rows } = billeteraTable2();
+  return (
+    <MDBox pt={6} pb={3}>
+      <Grid container spacing={6}>
+        <Grid item xs={12}>
+          <Card>
+            <MDBox
+              mx={2}
+              mt={-3}
+              py={3}
+              px={2}
+              variant="gradient"
+              bgColor="info"
+              borderRadius="lg"
+              coloredShadow="info"
+            >
+              <MDTypography variant="h6" color="white">
+                Cartera del Robo Advisor
+              </MDTypography>
+            </MDBox>
+            <MDBox pt={3}>
+              <DataTable
+                table={{ columns, rows }}
+                isSorted={false}
+                entriesPerPage={false}
+                showTotalEntries={false}
+                noEndBorder
+              />
+            </MDBox>
+          </Card>
+        </Grid>
+      </Grid>
+    </MDBox>
+  );
+}
 
 function Billetera() {
   const { columns, rows } = billeteraTable();
@@ -53,7 +91,7 @@ function Billetera() {
                 coloredShadow="info"
               >
                 <MDTypography variant="h6" color="white">
-                  Billetera
+                  Cartera definida personalmente
                 </MDTypography>
               </MDBox>
               <MDBox pt={3}>
@@ -69,6 +107,7 @@ function Billetera() {
           </Grid>
         </Grid>
       </MDBox>
+      <Abc />
       <Footer />
     </DashboardLayout>
   );

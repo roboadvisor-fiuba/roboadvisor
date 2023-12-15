@@ -67,14 +67,14 @@ const routes = [
     route: "/billetera",
     component: <Billetera />,
   },
-  {
-    type: "collapse",
-    name: "Cartera Robo Advisor",
-    key: "roboadvisor",
-    icon: <Icon fontSize="small">table_view</Icon>,
-    route: "/roboadvisor",
-    component: <RoboAdv />,
-  },
+  // {
+  //   type: "collapse",
+  //   name: "Cartera Robo Advisor",
+  //   key: "roboadvisor",
+  //   icon: <Icon fontSize="small">table_view</Icon>,
+  //   route: "/roboadvisor",
+  //   component: <RoboAdv />,
+  // },
   {
     type: "collapse",
     name: "Mercado",

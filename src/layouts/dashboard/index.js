@@ -135,7 +135,7 @@ function Dashboard() {
               <MDBox mb={3}>
                 <ReportsLineChart
                   color="dark"
-                  title="Balance histórico"
+                  title="Índice Merval"
                   description={
                     <>
                       (<strong>+2.5%</strong>) en el último mes
