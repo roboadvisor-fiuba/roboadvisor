@@ -34,10 +34,13 @@ import CoverLayout from "layouts/authentication/components/CoverLayout";
 // Images
 import bgImage from "assets/images/bg-sign-up-cover.jpeg";
 
+import { useAuth } from "../components/AuthContext";
+
 function Cover() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
+  const { setCurrentUser } = useAuth();
 
   const navigate = useNavigate();
 
@@ -48,20 +51,25 @@ function Cover() {
       formData.append("email", email);
       formData.append("password", password);
 
+      const user = {
+        token: response.data.access_token,
+        email: email,
+      };
+
       const response = await axios.post("http://127.0.0.1:5000/api/v1/auth/register", formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
       });
-      debugger;
       localStorage.setItem("token", response.data.access_token);
+      localStorage.setItem("email", email);
+      setCurrentUser(user);
       console.log("Register successful!", response.data);
       navigate("/dashboard");
     } catch (error) {
       if (error.response) {
         setErrorMessage(error.response.data.message || "An error occurred during login.");
       } else {
-        debugger;
         setErrorMessage("The server may be down or your network is not configured correctly.");
       }
     }

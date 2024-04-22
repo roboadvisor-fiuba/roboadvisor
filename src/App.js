@@ -53,6 +53,8 @@ import { useMaterialUIController, setMiniSidenav, setOpenConfigurator } from "co
 import brandWhite from "assets/images/logo-ct.png";
 import brandDark from "assets/images/logo-ct-dark.png";
 
+import { useAuth } from "./layouts/authentication/components/AuthContext";
+
 export default function App() {
   const [controller, dispatch] = useMaterialUIController();
   const {
@@ -108,19 +110,36 @@ export default function App() {
     document.documentElement.scrollTop = 0;
     document.scrollingElement.scrollTop = 0;
   }, [pathname]);
+  const { currentUser, isLoading } = useAuth();
 
-  const getRoutes = (allRoutes) =>
-    allRoutes.map((route) => {
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+  const getRoutes = (allRoutes) => {
+    return allRoutes.map((route) => {
       if (route.collapse) {
         return getRoutes(route.collapse);
       }
 
       if (route.route) {
-        return <Route exact path={route.route} element={route.component} key={route.key} />;
+        return (
+          <Route
+            key={route.key}
+            path={route.route}
+            element={
+              route.protected && !currentUser ? (
+                <Navigate to="/authentication/sign-in" replace />
+              ) : (
+                route.component
+              )
+            }
+          />
+        );
       }
 
       return null;
     });
+  };
 
   const configsButton = (
     <MDBox

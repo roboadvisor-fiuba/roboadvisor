@@ -35,11 +35,14 @@ import BasicLayout from "layouts/authentication/components/BasicLayout";
 // Images
 import bgImage from "assets/images/bg-sign-in-basic.jpeg";
 
+import { useAuth } from "../components/AuthContext";
+
 function Basic() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [rememberMe, setRememberMe] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
+  const { setCurrentUser } = useAuth();
 
   const navigate = useNavigate();
 
@@ -58,7 +61,14 @@ function Basic() {
         },
       });
 
+      const user = {
+        token: response.data.access_token,
+        email: email,
+      };
+
       localStorage.setItem("token", response.data.access_token);
+      localStorage.setItem("email", email);
+      setCurrentUser(user);
       console.log("Login successful!", response.data);
       navigate("/dashboard");
     } catch (error) {
