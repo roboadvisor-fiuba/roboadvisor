@@ -51,16 +51,15 @@ function Cover() {
       formData.append("email", email);
       formData.append("password", password);
 
-      const user = {
-        token: response.data.access_token,
-        email: email,
-      };
-
       const response = await axios.post("http://127.0.0.1:5000/api/v1/auth/register", formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
       });
+      const user = {
+        token: response.data.access_token,
+        email: email,
+      };
       localStorage.setItem("token", response.data.access_token);
       localStorage.setItem("email", email);
       setCurrentUser(user);

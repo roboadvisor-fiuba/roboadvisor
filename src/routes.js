@@ -42,6 +42,7 @@ import Billetera from "layouts/billetera";
 import Billing from "layouts/billing";
 import SignIn from "layouts/authentication/sign-in";
 import SignUp from "layouts/authentication/sign-up";
+import SignOut from "layouts/authentication/sign-out";
 
 // @mui icons
 import Icon from "@mui/material/Icon";
@@ -132,6 +133,15 @@ const routes = [
     route: "/authentication/sign-up",
     component: <SignUp />,
     protected: false,
+  },
+  {
+    type: "collapse",
+    name: "Sign Out",
+    key: "sign-out",
+    icon: <Icon fontSize="small">exit_to_app</Icon>,
+    route: "/authentication/sign-out",
+    component: <SignOut />,
+    protected: true,
   },
 ];
 
