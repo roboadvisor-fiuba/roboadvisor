@@ -53,7 +53,7 @@ function RoboAdv() {
                 coloredShadow="info"
               >
                 <MDTypography variant="h6" color="white">
-                  Cartera del Robo Advisor
+                  Portfolio del Robo Advisor
                 </MDTypography>
               </MDBox>
               <MDBox pt={3}>
@@ -69,7 +69,7 @@ function RoboAdv() {
           </Grid>
         </Grid>
       </MDBox>
-      <Footer />
+      {/* <Footer /> */}
     </DashboardLayout>
   );
 }

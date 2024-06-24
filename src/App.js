@@ -55,6 +55,9 @@ import brandDark from "assets/images/logo-ct-dark.png";
 
 import { useAuth } from "./layouts/authentication/components/AuthContext";
 
+import Comprar from "layouts/comprar";
+import CompraExitosa from "layouts/compra-exitosa";
+
 export default function App() {
   const [controller, dispatch] = useMaterialUIController();
   const {
@@ -210,6 +213,8 @@ export default function App() {
       {layout === "vr" && <Configurator />}
       <Routes>
         {getRoutes(routes)}
+        <Route key="comprar" path="/comprar" element={<Comprar />} />
+        <Route key="compraexitosa" path="/compra-exitosa" element={<CompraExitosa />} />
         <Route path="*" element={<Navigate to="/dashboard" />} />
       </Routes>
     </ThemeProvider>
