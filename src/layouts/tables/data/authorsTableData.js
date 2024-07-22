@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import MDBox from "components/MDBox";
 import MDTypography from "components/MDTypography";
 import MDAvatar from "components/MDAvatar";
@@ -32,32 +32,32 @@ const ASSETS = {
   GGAL: {
     image: ggal,
     longName: "Banco Galicia",
-    shortName: "GGAL",
+    shortName: "GGAL.BA",
   },
   EDN: {
     image: edn,
     longName: "Edenor",
-    shortName: "EDN",
+    shortName: "EDN.BA",
   },
   YPFD: {
     image: ypf,
     longName: "YPF",
-    shortName: "YPFD",
+    shortName: "YPFD.BA",
   },
   LOMA: {
     image: loma,
     longName: "Loma Negra",
-    shortName: "LOMA",
+    shortName: "LOMA.BA",
   },
   PAMP: {
     image: pamp,
     longName: "Pampa Energía",
-    shortName: "PAMP",
+    shortName: "PAMP.BA",
   },
   BBAR: {
     image: bbva,
     longName: "BBVA",
-    shortName: "BBAR",
+    shortName: "BBAR.BA",
   },
 };
 
@@ -159,6 +159,20 @@ const PRICES = {
 function Data() {
   const [modalOpen, setModalOpen] = useState(false);
   const [selectedAsset, setSelectedAsset] = useState(null);
+  const [precios, setPrecios] = useState([]);
+
+  useEffect(() => {
+    async function fetchData() {
+      const response = await axios.get("http://127.0.0.1:5000/api/v1/asset/yfinance", {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      });
+      console.log(response);
+      setPrecios(response.data);
+    }
+    fetchData();
+  }, []);
 
   // eslint-disable-next-line react/prop-types
   const Author = ({ image, name, email }) => (
@@ -189,7 +203,7 @@ function Data() {
   };
 
   const rows = Object.values(ASSETS).map((asset) => {
-    const price = PRICES[asset.shortName];
+    const price = precios[asset.shortName];
     return {
       author: <Author image={asset.image} name={asset.shortName} email={asset.longName} />,
       function: <Job title="Manager" description="Organization" />,

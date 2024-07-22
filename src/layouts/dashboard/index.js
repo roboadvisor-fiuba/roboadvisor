@@ -45,17 +45,7 @@ function Dashboard() {
         <Grid container spacing={3}>
           <Grid item xs={12} md={6} lg={3}>
             <MDBox mb={1.5}>
-              <ComplexStatisticsCard
-                color="dark"
-                icon="weekend"
-                title="Total Activos"
-                count={2}
-                percentage={{
-                  color: "success",
-                  amount: "+15%",
-                  label: "que hace un mes",
-                }}
-              />
+              <ComplexStatisticsCard color="dark" icon="weekend" title="Total Activos" count={3} />
             </MDBox>
           </Grid>
           <Grid item xs={12} md={6} lg={3}>

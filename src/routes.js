@@ -59,10 +59,10 @@ const routes = [
   },
   {
     type: "collapse",
-    name: "Mi Billetera",
+    name: "Cartera del Roboadvisor",
     key: "billetera",
     icon: <Icon fontSize="small">table_view</Icon>,
-    route: "/billetera",
+    route: "/cartera_del_Roboadvisor",
     component: <Billetera />,
     protected: true,
   },
@@ -85,7 +85,7 @@ const routes = [
   },
   {
     type: "collapse",
-    name: "Billing",
+    name: "Medios de Pago",
     key: "billing",
     icon: <Icon fontSize="small">receipt_long</Icon>,
     route: "/billing",

@@ -52,29 +52,10 @@ function OrdersOverview() {
           dateTime="22 DEC 7:20 PM"
         />
         <TimelineItem
-          color="error"
-          icon="inventory_2"
-          title="-$500 Galicia"
-          dateTime="21 DEC 11 PM"
-        />
-        <TimelineItem
-          color="error"
-          icon="inventory_2"
-          title="-$1000 YPF"
-          dateTime="21 DEC 9:34 PM"
-        />
-        <TimelineItem
           color="success"
           icon="notifications"
           title="+$1800 Cartera Robo Advisor"
           dateTime="20 DEC 2:20 AM"
-        />
-        <TimelineItem
-          color="success"
-          icon="notifications"
-          title="+$480 Pampa Energia"
-          dateTime="18 DEC 4:54 AM"
-          lastItem
         />
       </MDBox>
     </Card>
