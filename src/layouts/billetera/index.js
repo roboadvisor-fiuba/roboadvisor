@@ -179,7 +179,7 @@ function Billetera() {
         </Grid>
       </MDBox> */}
       <Abc />
-      <Card id="delete-account">
+      {/* <Card id="delete-account">
         <MDBox pt={3} px={2}>
           <MDTypography variant="h6" fontWeight="medium">
             Dinero Invertido
@@ -204,7 +204,7 @@ function Billetera() {
             </MDBox>
           </MDBox>
         </MDBox>
-      </Card>
+      </Card> */}
       {/* <Footer /> */}
     </DashboardLayout>
   );

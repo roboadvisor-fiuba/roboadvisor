@@ -14,25 +14,46 @@ Coded by www.creative-tim.com
 
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 */
+import React, { useState, useEffect } from "react";
 
 // Material Dashboard 2 React components
 import MDBox from "components/MDBox";
 import MDTypography from "components/MDTypography";
 import MDAvatar from "components/MDAvatar";
-import MDBadge from "components/MDBadge";
-import MDButton from "components/MDButton";
-import Icon from "@mui/material/Icon";
-
-// Images
-import bbva from "assets/images//activos/bbva.jpg";
-import edn from "assets/images//activos/edn.jpg";
-import ypf from "assets/images//activos/YPFD.jpg";
-import ggal from "assets/images//activos/GGAL.jpg";
-import loma from "assets/images//activos/LOMA.jpg";
-import pamp from "assets/images//activos/PAMP.jpg";
+import { ASSETS } from "constants";
+import axios from "axios";
 
 export default function data() {
-  const Author = ({ image, name, email }) => (
+  const [portfolio, setPortfolio] = useState([]);
+  const [precios, setPrecios] = useState([]);
+
+  useEffect(() => {
+    async function fetchData() {
+      const response = await axios.get("http://127.0.0.1:5000/api/v1/asset/yfinance", {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      });
+      console.log(response);
+      setPrecios(response.data);
+    }
+    fetchData();
+  }, []);
+
+  useEffect(() => {
+    async function fetchData() {
+      const response = await axios.get("http://127.0.0.1:5000/api/v1/asset/holding/1", {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      });
+      console.log(response);
+      setPortfolio(response.data);
+    }
+    fetchData();
+  }, []);
+
+  const Activo = ({ image, name, email }) => (
     <MDBox display="flex" alignItems="center" lineHeight={1}>
       <MDAvatar src={image} name={name} size="sm" />
       <MDBox ml={2} lineHeight={1}>
@@ -44,109 +65,35 @@ export default function data() {
     </MDBox>
   );
 
-  const Job = ({ title, description }) => (
-    <MDBox lineHeight={1} textAlign="left">
-      <MDTypography display="block" variant="caption" color="text" fontWeight="medium">
-        {title}
-      </MDTypography>
-      <MDTypography variant="caption">{description}</MDTypography>
-    </MDBox>
+  const Valor = ({ number, simboloPesos = false }) => (
+    <MDTypography component="a" href="#" variant="caption" color="text" fontWeight="medium">
+      {simboloPesos && "$"}
+      {number}
+    </MDTypography>
   );
 
-  return {
-    columns: [
-      { Header: "especie", accessor: "author", width: "45%", align: "left" },
-      // { Header: "function", accessor: "function", align: "left" },
-      // { Header: "status", accessor: "status", align: "center" },
-      { Header: "ultimo precio", accessor: "employed", align: "center" },
-      //   { Header: "accion", accessor: "action", align: "center" },
-    ],
+  const columns = [
+    { Header: "Activo", accessor: "activo", width: "45%", align: "left" },
+    { Header: "Precio por Acción", accessor: "precio", align: "center" },
+    { Header: "Cantidad de acciones", accessor: "acciones", align: "center" },
+    { Header: "Valor Total", accessor: "valor", align: "center" },
+  ];
 
-    rows: [
-      {
-        author: <Author image={edn} name="EDN" email="Edenor" />,
-        function: <Job title="Programator" description="Developer" />,
-        status: (
-          <MDBox ml={-1}>
-            <MDBadge badgeContent="offline" color="dark" variant="gradient" size="sm" />
-          </MDBox>
-        ),
-        employed: (
-          <MDTypography component="a" href="#" variant="caption" color="text" fontWeight="medium">
-            2500,65
-          </MDTypography>
-        ),
-        action: (
-          <MDBox display="flex" alignItems="center" mt={{ xs: 2, sm: 0 }} ml={{ xs: -1.5, sm: 0 }}>
-            <MDBox mr={1}>
-              <MDButton variant="text" color="error">
-                <Icon>delete</Icon>&nbsp;vender
-              </MDButton>
-            </MDBox>
-            <MDBox mr={1}>
-              <MDButton variant="text" color="success">
-                <Icon>delete</Icon>&nbsp;comprar
-              </MDButton>
-            </MDBox>
-          </MDBox>
-        ),
-      },
-      {
-        author: <Author image={ypf} name="YPFD" email="YPF" />,
-        function: <Job title="Executive" description="Projects" />,
-        status: (
-          <MDBox ml={-1}>
-            <MDBadge badgeContent="online" color="success" variant="gradient" size="sm" />
-          </MDBox>
-        ),
-        employed: (
-          <MDTypography component="a" href="#" variant="caption" color="text" fontWeight="medium">
-            1986,78
-          </MDTypography>
-        ),
-        action: (
-          <MDBox display="flex" alignItems="center" mt={{ xs: 2, sm: 0 }} ml={{ xs: -1.5, sm: 0 }}>
-            <MDBox mr={1}>
-              <MDButton variant="text" color="error">
-                <Icon>delete</Icon>&nbsp;vender
-              </MDButton>
-            </MDBox>
-            <MDBox mr={1}>
-              <MDButton variant="text" color="success">
-                <Icon>delete</Icon>&nbsp;comprar
-              </MDButton>
-            </MDBox>
-          </MDBox>
-        ),
-      },
-      {
-        author: <Author image={loma} name="LOMA" email="Loma Negra" />,
-        function: <Job title="Manager" description="Executive" />,
-        status: (
-          <MDBox ml={-1}>
-            <MDBadge badgeContent="offline" color="dark" variant="gradient" size="sm" />
-          </MDBox>
-        ),
-        employed: (
-          <MDTypography component="a" href="#" variant="caption" color="text" fontWeight="medium">
-            830,0
-          </MDTypography>
-        ),
-        action: (
-          <MDBox display="flex" alignItems="center" mt={{ xs: 2, sm: 0 }} ml={{ xs: -1.5, sm: 0 }}>
-            <MDBox mr={1}>
-              <MDButton variant="text" color="error">
-                <Icon>delete</Icon>&nbsp;vender
-              </MDButton>
-            </MDBox>
-            <MDBox mr={1}>
-              <MDButton variant="text" color="success">
-                <Icon>delete</Icon>&nbsp;comprar
-              </MDButton>
-            </MDBox>
-          </MDBox>
-        ),
-      },
-    ],
+  const rows = portfolio.map((activo) => {
+    const asset = Object.values(ASSETS).find((value) => value.shortName === activo.name);
+    console.log("Activo: ", activo);
+    console.log("Asset: ", asset);
+
+    return {
+      activo: <Activo image={asset.image} name={asset.shortName} email={asset.longName} />,
+      precio: <Valor number={precios[activo.name]} simboloPesos />,
+      acciones: <Valor number={activo.quantity} />,
+      valor: <Valor number={precios[activo.name] * activo.quantity} simboloPesos />,
+    };
+  });
+
+  return {
+    columns,
+    rows,
   };
 }
