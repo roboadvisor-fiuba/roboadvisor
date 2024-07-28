@@ -38,9 +38,9 @@ import DataTable from "examples/Tables/DataTable";
 // Data
 import billeteraTable from "layouts/billetera/data/billeteraTable";
 import billeteraTable2 from "layouts/billetera/data/billeteraTable2";
+import assetsHistory from "layouts/billetera/data/assetsHistory";
 
-function Abc() {
-  const { columns, rows } = billeteraTable2();
+const getTable = (columns, rows, title) => {
   return (
     <MDBox pt={6} pb={3}>
       <Grid container spacing={6}>
@@ -57,7 +57,7 @@ function Abc() {
               coloredShadow="info"
             >
               <MDTypography variant="h6" color="white">
-                Portfolio del Robo Advisor
+                {title}
               </MDTypography>
             </MDBox>
             <MDBox pt={3}>
@@ -74,6 +74,16 @@ function Abc() {
       </Grid>
     </MDBox>
   );
+};
+
+function Abc() {
+  const { columns, rows } = billeteraTable2();
+  return getTable(columns, rows, "Portfolio del Robo Advisor");
+}
+
+function HoldingHistory() {
+  const { columns, rows } = assetsHistory();
+  return getTable(columns, rows, "Historial de Portfolio del Robo Advisor");
 }
 
 function Billetera() {
@@ -179,6 +189,7 @@ function Billetera() {
         </Grid>
       </MDBox> */}
       <Abc />
+      <HoldingHistory />
       {/* <Card id="delete-account">
         <MDBox pt={3} px={2}>
           <MDTypography variant="h6" fontWeight="medium">
