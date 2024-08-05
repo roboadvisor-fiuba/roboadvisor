@@ -94,6 +94,21 @@ function Billetera() {
     setOpenNewPortModal(true);
   };
 
+  const formData = new FormData();
+
+  const handleRebalancePortfolio = async () => {
+    try {
+      await axios.post("http://127.0.0.1:5000/api/v1/asset/rebalancear_portfolio/1", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      });
+    } catch (error) {
+      console.error("Error rebalancing portfolio", error);
+    }
+  };
+
   // useEffect(() => {
   //   const fetchPortfolios = async () => {
   //     try {
@@ -190,6 +205,9 @@ function Billetera() {
       </MDBox> */}
       <Abc />
       <HoldingHistory />
+      <MDButton variant="gradient" color="dark" onClick={handleRebalancePortfolio}>
+        Rebalancear Portfolio
+      </MDButton>
       {/* <Card id="delete-account">
         <MDBox pt={3} px={2}>
           <MDTypography variant="h6" fontWeight="medium">
