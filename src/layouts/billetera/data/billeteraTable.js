@@ -33,6 +33,8 @@ import ggal from "assets/images//activos/GGAL.jpg";
 import loma from "assets/images//activos/LOMA.jpg";
 import pamp from "assets/images//activos/PAMP.jpg";
 
+import { getAssetByShortName } from "constants";
+
 // const ASSETS = {
 //   GGAL: {
 //     image: "assets/images//activos/GGAL.jpg",
@@ -206,7 +208,7 @@ export default function data(assetList) {
   // Generate rows based on assetList and ASSETS constant
   const rows = assetList
     .map((asset) => {
-      const assetInfo = ASSETS[asset.name];
+      const assetInfo = getAssetByShortName(asset.name);
       if (!assetInfo) return null;
 
       return {

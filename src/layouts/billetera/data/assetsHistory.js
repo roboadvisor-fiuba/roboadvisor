@@ -4,7 +4,7 @@ import React, { useState, useEffect } from "react";
 import MDBox from "components/MDBox";
 import MDTypography from "components/MDTypography";
 import MDAvatar from "components/MDAvatar";
-import { ASSETS } from "constants";
+import { getAssetByShortName } from "constants";
 import axios from "axios";
 
 export default function historyData() {
@@ -49,7 +49,7 @@ export default function historyData() {
 
   const rows = history.map((record) => {
     const activos = record.assets.map((activo) => {
-      const asset = Object.values(ASSETS).find((value) => value.shortName === activo.name);
+      const asset = getAssetByShortName(activo.name);
       return (
         <MDBox key={activo.id} display="flex" alignItems="center" mb={1}>
           <Activo image={asset.image} name={asset.shortName} email={asset.longName} />

@@ -20,7 +20,7 @@ import React, { useState, useEffect } from "react";
 import MDBox from "components/MDBox";
 import MDTypography from "components/MDTypography";
 import MDAvatar from "components/MDAvatar";
-import { ASSETS } from "constants";
+import { getAssetByShortName } from "constants";
 import axios from "axios";
 
 export default function data() {
@@ -80,7 +80,7 @@ export default function data() {
   ];
 
   const rows = portfolio.map((activo) => {
-    const asset = Object.values(ASSETS).find((value) => value.shortName === activo.name);
+    const asset = getAssetByShortName(activo.name);
     console.log("Activo: ", activo);
     console.log("Asset: ", asset);
 
