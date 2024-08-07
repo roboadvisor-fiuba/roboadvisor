@@ -19,6 +19,50 @@ function Dashboard() {
   });
   const [lastPerformance, setLastPerformance] = useState(0);
   const [lastPerformanceMerval, setLastPerformanceMerval] = useState(0);
+  const [portfolio, setPortfolio] = useState([]);
+  const [totalValue, setTotalValue] = useState(0);
+
+  useEffect(() => {
+    async function fetchPortfolio() {
+      const response = await axios.get("http://127.0.0.1:5000/api/v1/asset/holding/1", {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      });
+      console.log(response);
+      setPortfolio(response.data);
+    }
+    fetchPortfolio();
+  }, []);
+
+  useEffect(() => {
+    async function calculateTotalValue() {
+      let total = 0;
+      for (const activo of portfolio) {
+        if (activo.quantity > 0) {
+          try {
+            const response = await axios.get(
+              `http://127.0.0.1:5000/api/v1/asset/yfinance/${activo.name}`,
+              {
+                headers: {
+                  Authorization: `Bearer ${localStorage.getItem("token")}`,
+                },
+              }
+            );
+            const price = response.data.price;
+            total += activo.quantity * price;
+          } catch (error) {
+            console.error(`Error fetching price for ${activo.name}:`, error);
+          }
+        }
+      }
+      setTotalValue(total);
+    }
+
+    if (portfolio.length > 0) {
+      calculateTotalValue();
+    }
+  }, [portfolio]);
 
   useEffect(() => {
     const fetchPortfolioPerformanceData = async () => {
@@ -91,6 +135,30 @@ function Dashboard() {
                 icon="weekend"
                 title="Rendimiento anual del Merval"
                 count={`${lastPerformanceMerval}%`}
+              />
+            </MDBox>
+          </Grid>
+          <Grid item xs={12} md={6} lg={3}>
+            <MDBox mb={1.5}>
+              <ComplexStatisticsCard
+                icon="leaderboard"
+                title="Valor total del portfolio"
+                count={`$${totalValue}`}
+              />
+            </MDBox>
+          </Grid>
+          <Grid item xs={12} md={6} lg={3}>
+            <MDBox mb={1.5}>
+              <ComplexStatisticsCard
+                color="primary"
+                icon="person_add"
+                title="Cantidad de activos"
+                count={`${portfolio.length}`}
+                percentage={{
+                  color: "success",
+                  amount: "",
+                  label: "",
+                }}
               />
             </MDBox>
           </Grid>
