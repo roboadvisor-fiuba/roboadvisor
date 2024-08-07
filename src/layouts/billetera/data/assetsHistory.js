@@ -44,26 +44,23 @@ export default function historyData() {
 
   const columns = [
     { Header: "Fecha", accessor: "fecha", width: "20%", align: "left" },
-    { Header: "Activos", accessor: "activos", align: "left" },
+    { Header: "Activo", accessor: "activo", align: "left" },
+    { Header: "Cantidad de acciones", accessor: "cantidad", align: "left" },
   ];
 
-  const rows = history.map((record) => {
-    const activos = record.assets.map((activo) => {
+  const rows = history.flatMap((record) => {
+    return record.assets.map((activo) => {
       const asset = getAssetByShortName(activo.name);
-      return (
-        <MDBox key={activo.id} display="flex" alignItems="center" mb={1}>
-          <Activo image={asset.image} name={asset.shortName} email={asset.longName} />
-          <MDBox ml={2}>
-            <Valor number={activo.quantity} />
+      return {
+        fecha: record.date,
+        activo: (
+          <MDBox key={activo.id} display="flex" alignItems="center" mb={1}>
+            <Activo image={asset.image} name={asset.shortName} email={asset.longName} />
           </MDBox>
-        </MDBox>
-      );
+        ),
+        cantidad: activo.quantity,
+      };
     });
-
-    return {
-      fecha: record.date,
-      activos: <MDBox>{activos}</MDBox>,
-    };
   });
 
   return {
