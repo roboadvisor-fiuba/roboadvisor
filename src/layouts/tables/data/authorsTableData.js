@@ -4,25 +4,35 @@ import MDTypography from "components/MDTypography";
 import MDAvatar from "components/MDAvatar";
 import MDBadge from "components/MDBadge";
 import { ASSETS } from "constants";
-
 import axios from "axios";
 
 function Data() {
   const [modalOpen, setModalOpen] = useState(false);
   const [selectedAsset, setSelectedAsset] = useState(null);
-  const [precios, setPrecios] = useState([]);
+  const [precios, setPrecios] = useState({});
 
   useEffect(() => {
-    async function fetchData() {
-      const response = await axios.get("http://127.0.0.1:5000/api/v1/asset/yfinance", {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
-        },
-      });
-      console.log(response);
-      setPrecios(response.data);
+    async function fetchPrices() {
+      const fetchedPrices = {};
+      for (const asset of Object.values(ASSETS)) {
+        try {
+          const response = await axios.get(
+            `http://127.0.0.1:5000/api/v1/asset/yfinance/${asset.shortName}`,
+            {
+              headers: {
+                Authorization: `Bearer ${localStorage.getItem("token")}`,
+              },
+            }
+          );
+          fetchedPrices[asset.shortName] = response.data.price;
+        } catch (error) {
+          console.error(`Error fetching price for ${asset.shortName}:`, error);
+        }
+      }
+      setPrecios(fetchedPrices);
     }
-    fetchData();
+
+    fetchPrices();
   }, []);
 
   // eslint-disable-next-line react/prop-types
@@ -65,7 +75,7 @@ function Data() {
       ),
       employed: (
         <MDTypography component="a" href="#" variant="caption" color="text" fontWeight="medium">
-          {price}
+          {price !== undefined ? `$${price}` : "Loading..."}
         </MDTypography>
       ),
     };
@@ -73,10 +83,7 @@ function Data() {
 
   const columns = [
     { Header: "especie", accessor: "author", width: "45%", align: "left" },
-    // { Header: "function", accessor: "function", align: "left" },
-    // { Header: "status", accessor: "status", align: "center" },
     { Header: "ultimo precio", accessor: "employed", align: "center" },
-    // { Header: "accion", accessor: "action", align: "center" },
   ];
 
   return { columns, rows };

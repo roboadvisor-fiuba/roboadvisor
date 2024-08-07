@@ -25,23 +25,10 @@ import axios from "axios";
 
 export default function data() {
   const [portfolio, setPortfolio] = useState([]);
-  const [precios, setPrecios] = useState([]);
+  const [precios, setPrecios] = useState({});
 
   useEffect(() => {
-    async function fetchData() {
-      const response = await axios.get("http://127.0.0.1:5000/api/v1/asset/yfinance", {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
-        },
-      });
-      console.log(response);
-      setPrecios(response.data);
-    }
-    fetchData();
-  }, []);
-
-  useEffect(() => {
-    async function fetchData() {
+    async function fetchPortfolio() {
       const response = await axios.get("http://127.0.0.1:5000/api/v1/asset/holding/1", {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -50,8 +37,34 @@ export default function data() {
       console.log(response);
       setPortfolio(response.data);
     }
-    fetchData();
+    fetchPortfolio();
   }, []);
+
+  useEffect(() => {
+    async function fetchPrices() {
+      const fetchedPrices = {};
+      for (const activo of portfolio) {
+        try {
+          const response = await axios.get(
+            `http://127.0.0.1:5000/api/v1/asset/yfinance/${activo.name}`,
+            {
+              headers: {
+                Authorization: `Bearer ${localStorage.getItem("token")}`,
+              },
+            }
+          );
+          fetchedPrices[activo.name] = response.data.price;
+        } catch (error) {
+          console.error(`Error fetching price for ${activo.name}:`, error);
+        }
+      }
+      setPrecios(fetchedPrices);
+    }
+
+    if (portfolio.length > 0) {
+      fetchPrices();
+    }
+  }, [portfolio]);
 
   const Activo = ({ image, name, email }) => (
     <MDBox display="flex" alignItems="center" lineHeight={1}>
@@ -84,11 +97,13 @@ export default function data() {
     console.log("Activo: ", activo);
     console.log("Asset: ", asset);
 
+    const precio = precios[activo.name] || 0;
+
     return {
       activo: <Activo image={asset.image} name={asset.shortName} email={asset.longName} />,
-      precio: <Valor number={precios[activo.name]} simboloPesos />,
+      precio: <Valor number={precio} simboloPesos />,
       acciones: <Valor number={activo.quantity} />,
-      valor: <Valor number={precios[activo.name] * activo.quantity} simboloPesos />,
+      valor: <Valor number={precio * activo.quantity} simboloPesos />,
     };
   });
 
