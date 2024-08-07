@@ -123,7 +123,7 @@ function Dashboard() {
               <ComplexStatisticsCard
                 color="success"
                 icon="store"
-                title="Rendimiento anual del Roboadvisor"
+                title="Rendimiento del Roboadvisor (USD)"
                 count={`${lastPerformance}%`}
               />
             </MDBox>
@@ -133,7 +133,7 @@ function Dashboard() {
               <ComplexStatisticsCard
                 color="dark"
                 icon="weekend"
-                title="Rendimiento anual del Merval"
+                title="Rendimiento del Merval (USD)"
                 count={`${lastPerformanceMerval}%`}
               />
             </MDBox>
