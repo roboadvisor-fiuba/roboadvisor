@@ -95,10 +95,12 @@ function Billetera() {
   };
 
   const formData = new FormData();
+  formData.append("portfolio_id", 1);
+  formData.append("predictor_date", '{"2024-02-01"}');
 
   const handleRebalancePortfolio = async () => {
     try {
-      await axios.post("http://127.0.0.1:5000/api/v1/asset/rebalancear_portfolio/1", formData, {
+      await axios.post("http://127.0.0.1:5000/api/v1/asset/rebalance", formData, {
         headers: {
           "Content-Type": "multipart/form-data",
           Authorization: `Bearer ${localStorage.getItem("token")}`,
