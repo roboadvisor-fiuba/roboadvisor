@@ -17,6 +17,8 @@ function Dashboard() {
     labels: [],
     datasets: { label: "", data: [] },
   });
+  const [lastPerformance, setLastPerformance] = useState(0);
+  const [lastPerformanceMerval, setLastPerformanceMerval] = useState(0);
 
   useEffect(() => {
     const fetchPortfolioPerformanceData = async () => {
@@ -36,6 +38,8 @@ function Dashboard() {
           labels,
           datasets: { label: "Robo Advisor Performance", data: values },
         });
+        setLastPerformance(values[values.length - 1].toFixed(2));
+        console.log(values);
       } catch (error) {
         console.error("Error fetching Robo Advisor Performance data", error);
       }
@@ -55,6 +59,7 @@ function Dashboard() {
         const labels = data.map((item) => item.date);
         const values = data.map((item) => item.performance);
         setMervalPerformance({ labels, datasets: { label: "Merval Performance", data: values } });
+        setLastPerformanceMerval(values[values.length - 1].toFixed(2));
       } catch (error) {
         console.error("Error fetching Merval Performance data", error);
       }
@@ -68,57 +73,28 @@ function Dashboard() {
     <DashboardLayout>
       <DashboardNavbar />
       <MDBox py={3}>
-        {/*   <Grid container spacing={3}>
-          <Grid item xs={12} md={6} lg={3}>
-            <MDBox mb={1.5}>
-              <ComplexStatisticsCard color="dark" icon="weekend" title="Total Activos" count={3} />
-            </MDBox>
-          </Grid>
-          <Grid item xs={12} md={6} lg={3}>
-            <MDBox mb={1.5}>
-              <ComplexStatisticsCard
-                icon="leaderboard"
-                title="Rendimiento Anual"
-                count="6.8%"
-                percentage={{
-                  color: "success",
-                  amount: "+3.2%",
-                  label: "que el año pasado",
-                }}
-              />
-            </MDBox>
-          </Grid>
+        <Grid container spacing={3}>
           <Grid item xs={12} md={6} lg={3}>
             <MDBox mb={1.5}>
               <ComplexStatisticsCard
                 color="success"
                 icon="store"
-                title="Balance Total"
-                count="$17k"
-                percentage={{
-                  color: "success",
-                  amount: "+4%",
-                  label: "que hace un mes",
-                }}
+                title="Rendimiento anual del Roboadvisor"
+                count={`${lastPerformance}%`}
               />
             </MDBox>
           </Grid>
           <Grid item xs={12} md={6} lg={3}>
             <MDBox mb={1.5}>
               <ComplexStatisticsCard
-                color="primary"
-                icon="person_add"
-                title="Rentabilidad Histórica"
-                count="15%"
-                percentage={{
-                  color: "success",
-                  amount: "",
-                  label: "",
-                }}
+                color="dark"
+                icon="weekend"
+                title="Rendimiento anual del Merval"
+                count={`${lastPerformanceMerval}%`}
               />
             </MDBox>
           </Grid>
-        </Grid>*/}
+        </Grid>
         <MDBox mt={4.5}>
           <Grid container spacing={3}>
             <Grid item xs={12} md={6} lg={8}>

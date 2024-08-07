@@ -207,9 +207,9 @@ function Billetera() {
       </MDBox> */}
       <Abc />
       <HoldingHistory />
-      <MDButton variant="gradient" color="dark" onClick={handleRebalancePortfolio}>
+      {/* <MDButton variant="gradient" color="dark" onClick={handleRebalancePortfolio}>
         Rebalancear Portfolio
-      </MDButton>
+      </MDButton> */}
       {/* <Card id="delete-account">
         <MDBox pt={3} px={2}>
           <MDTypography variant="h6" fontWeight="medium">
